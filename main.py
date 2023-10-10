@@ -26,16 +26,8 @@ def get_CPU_info():
 
 
 if __name__ == '__main__':
-    start_time = time.time()
-    cpu_info = get_CPU_info()
-    for key, value in cpu_info.items():
-        if key != 'CPU FREQUENCY':
-            print(f'{key}: {value}')
-        else:
-            print(f'{key}: {value}MHz')
-    print(f"Execution finished in: {(time.time() - start_time):.3f} seconds")
     
-    #Load testing code | NOT FOR PROD
+    #Performance testing code | NOT FOR PROD
     while True:
         start_time = time.time()
         cpu_info = get_CPU_info()
@@ -44,5 +36,5 @@ if __name__ == '__main__':
                 print(f'{key}: {value}')
             else:
                 print(f'{key}: {value}MHz')
-        print(f"Execution finished in: {(time.time() - start_time):.3f} seconds")
+        print(f"Execution finished in: {(time.time() - start_time):.3f} seconds\n")
         time.sleep(1)
