@@ -26,6 +26,9 @@ def get_CPU_info():
 
 
 if __name__ == '__main__':
+
+    average = 0
+    count = 0
     
     #Performance testing code | NOT FOR PROD
     while True:
@@ -36,5 +39,9 @@ if __name__ == '__main__':
                 print(f'{key}: {value}')
             else:
                 print(f'{key}: {value}MHz')
-        print(f"Execution finished in: {(time.time() - start_time):.3f} seconds\n")
+        time_diff = time.time() - start_time
+        average += time_diff
+        count += 1
+        print(f"Execution finished in: {time_diff:.3f} seconds\n")
+        print(f"Average execution time: {(average/count):.3f} seconds\n")
         time.sleep(1)
