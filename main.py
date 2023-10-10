@@ -1,6 +1,7 @@
 import psutil
-import cpuinfo
+
 import time
+import subprocess
 
 def get_CPU_info():
     CPU_info = {
@@ -10,12 +11,14 @@ def get_CPU_info():
         'CPU FREQUENCY': 0,
     }
 
-    #name_cpu = cpuinfo.get_cpu_info()['brand_raw']
+    name_cpu_raw = subprocess.run(['wmic', 'CPU', 'get', 'name'], capture_output=True, text=True)
+    output_lines = name_cpu_raw.stdout.split('\n')[2:] #[2:] such that the list begins from the third elemnt of the split list i.e. the second line is now the first and only element of the list | raw stdout as follows"Name\n\n*CPUNAME*\n" | split into ['Name', '', 'CPUNAME'...]
+    name_cpu = output_lines[0]
     num_cores = psutil.cpu_count(logical=False)
     num_threads = psutil.cpu_count(logical=True)
     freq_cpu = psutil.cpu_freq().current
 
-    #CPU_info['CPU NAME'] = name_cpu
+    CPU_info['CPU NAME'] = name_cpu
     CPU_info['PHYSICAL CORES'] = num_cores
     CPU_info['LOGICAL CORES'] = num_threads
     CPU_info['CPU FREQUENCY'] = freq_cpu
