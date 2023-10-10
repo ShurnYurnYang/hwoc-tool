@@ -24,19 +24,13 @@ def get_CPU_info():
 
     return CPU_info
 
-def update_CPU_info(cpu_dict):
-    freq_cpu = psutil.cpu_freq().current
-    cpu_dict['CPU FREQUENCY'] = freq_cpu
-
-    return cpu_dict
-
 
 if __name__ == '__main__':
     
     #Performance testing code | NOT FOR PROD
     while True:
         start_time = time.time()
-        cpu_info = update_CPU_info(cpu_info)
+        cpu_info = get_CPU_info()
         for key, value in cpu_info.items():
             if key != 'CPU FREQUENCY':
                 print(f'{key}: {value}')
