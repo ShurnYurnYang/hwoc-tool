@@ -602,3 +602,6 @@ FodyWeavers.xsd
 
 # Manually added ignore .vscode/settings.json
 .vscode/settings.json
+
+# Manually added ignore .vscode/ folder
+.vscode/
