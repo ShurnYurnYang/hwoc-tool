@@ -599,3 +599,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Manually added ignore .vscode/settings.json
+.vscode/settings.json
