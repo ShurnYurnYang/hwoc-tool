@@ -1,5 +1,5 @@
 # HWOC tool
-HWOC tool is a set of scripts that monitors hardware level performance of components and provides overclocking related tools.
+HWOC tool is a set of scripts that monitors hardware level performance of components and provides overclocking related tools and features.
 
 ## Features
 ### Supported Operating Systems:
