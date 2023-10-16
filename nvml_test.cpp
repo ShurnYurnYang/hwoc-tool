@@ -1,5 +1,6 @@
 #include <iostream>
 #include <nvml.h>
+#include <windows.h>
 
 // define a macro that returns the errorstring if the nvml call fails
 #define NVML_TRY(call)                                                                 \
@@ -29,7 +30,7 @@ int main()
     }
 
     // Loop through the number of devices and print the name for each
-    for (unsigned int i = 0; i < deviceCount; i++)
+    while (true)
     {
         for (unsigned int i = 0; i < deviceCount; i++)
         {
@@ -60,6 +61,9 @@ int main()
             unsigned int temperature;
             NVML_TRY(nvmlDeviceGetTemperature(device, NVML_TEMPERATURE_GPU, &temperature));
             std::cout << "GPU number " << i << " temperature is: " << temperature << " C" << std::endl;
+        }
+
+        Sleep(1000);
     }
 
     nvmlShutdown();
