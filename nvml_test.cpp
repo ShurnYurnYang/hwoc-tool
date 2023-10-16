@@ -61,6 +61,12 @@ int main()
             unsigned int temperature;
             NVML_TRY(nvmlDeviceGetTemperature(device, NVML_TEMPERATURE_GPU, &temperature));
             std::cout << "GPU number " << i << " temperature is: " << temperature << " C" << std::endl;
+
+            nvmlMemory_t memory;
+            NVML_TRY(nvmlDeviceGetMemoryInfo(device, &memory));
+            std::cout << "GPU number " << i << " memory total is: " << memory.total / 1024 / 1024 << " MB" << std::endl;
+            std::cout << "GPU number " << i << " memory used is: " << memory.used / 1024 / 1024 << " MB" << std::endl;
+            std::cout << "GPU number " << i << " memory free is: " << memory.free / 1024 / 1024 << " MB" << std::endl;
         }
 
         Sleep(1000);
