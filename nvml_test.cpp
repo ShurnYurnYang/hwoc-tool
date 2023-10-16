@@ -48,7 +48,7 @@ public:
         _perfMap["graphics_clock"] = getGraphicsClock();
         _perfMap["memory_clock"] = getMemoryClock();
         _perfMap["decoder_clock"] = getDecoderClock();
-        _perfMap["fan_speed"] = getFanSpeed();
+        //_perfMap["fan_speed"] = getFanSpeed();
         _perfMap["temperature"] = getTemperature();
         _perfMap["memory_total"] = getMemoryTotal();
         _perfMap["memory_used"] = getMemoryUsed();
@@ -78,12 +78,13 @@ public:
         return decoder_clock;
     }
 
-    int getFanSpeed()
+    /*int getFanSpeed()
     {
         unsigned int fan_speed;
         NVML_TRY(nvmlDeviceGetFanSpeed(device, &fan_speed));
         return fan_speed;
     }
+    */
 
     int getTemperature()
     {
