@@ -23,9 +23,9 @@ public:
     nvmlDevice_t device;
     char name[NVML_DEVICE_NAME_V2_BUFFER_SIZE];
 
-    nvmlClass(int const &deviceIndex)
+    nvmlClass(unsigned int const &deviceIndex)
     {
-        NVML_TRY(nvmlnit());
+        NVML_TRY(nvmlInit());
 
         NVML_TRY(nvmlDeviceGetHandleByIndex(deviceIndex, &device));
 
@@ -37,8 +37,9 @@ public:
         nvmlShutdown();
     }
 
-    char[] getName()
+    std::string getName()
     {
+        std::string name = this->name;
         return name;
     }
 
