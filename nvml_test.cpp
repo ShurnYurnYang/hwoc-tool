@@ -181,7 +181,7 @@ main()
             /*unsigned int fan_speed;
             NVML_TRY(nvmlDeviceGetFanSpeed(device, &fan_speed));
             std::cout << "GPU number " << i << " fan speed is: " << fan_speed << " %" << std::endl;
-            */
+            
 
             unsigned int temperature;
             NVML_TRY(nvmlDeviceGetTemperature(device, NVML_TEMPERATURE_GPU, &temperature));
@@ -198,6 +198,7 @@ main()
     }
 
     nvmlShutdown();
+    */
 
     return 0;
 }
