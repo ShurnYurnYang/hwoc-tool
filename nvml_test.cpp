@@ -12,7 +12,7 @@
         {                                                                              \
             std::cerr << "NVML call failed: " << nvmlErrorString(result) << std::endl; \
             nvmlShutdown();                                                            \
-            return 1;                                                                  \
+            throw std::runtime_error("An errorwhile calling NVML");                    \
         }                                                                              \
     } while (0)
 
