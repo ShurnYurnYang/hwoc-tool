@@ -1,6 +1,7 @@
 #include <iostream>
 #include <nvml.h>
 #include <windows.h>
+#include <map>
 
 // define a macro that returns the errorstring if the nvml call fails
 #define NVML_TRY(call)                                                                 \
@@ -15,7 +16,109 @@
         }                                                                              \
     } while (0)
 
-int main()
+class nvmlClass
+{
+
+public:
+    nvmlDevice_t device;
+    char name[NVML_DEVICE_NAME_V2_BUFFER_SIZE];
+
+    nvmlClass(int const &deviceIndex)
+    {
+        NVML_TRY(nvmlnit());
+
+        NVML_TRY(nvmlDeviceGetHandleByIndex(deviceIndex, &device));
+
+        NVML_TRY(nvmlDeviceGetName(device, name, NVML_DEVICE_NAME_V2_BUFFER_SIZE));
+    }
+
+    ~nvmlClass()
+    {
+        nvmlShutdown();
+    }
+
+    char[] getName()
+    {
+        return name;
+    }
+
+    std::map<std::string, unsigned int> updatePerfStats()
+    {
+        _perfMap["graphics_clock"] = getGraphicsClock();
+        _perfMap["memory_clock"] = getMemoryClock();
+        _perfMap["decoder_clock"] = getDecoderClock();
+        _perfMap["fan_speed"] = getFanSpeed();
+        _perfMap["temperature"] = getTemperature();
+        _perfMap["memory_total"] = getMemoryTotal();
+        _perfMap["memory_used"] = getMemoryUsed();
+        _perfMap["memory_free"] = getMemoryFree();
+
+        return _perfMap;
+    }
+
+    int getGraphicsClock()
+    {
+        unsigned int graphics_clock;
+        NVML_TRY(nvmlDeviceGetClockInfo(device, NVML_CLOCK_GRAPHICS, &graphics_clock));
+        return graphics_clock;
+    }
+
+    int getMemoryClock()
+    {
+        unsigned int memory_clock;
+        NVML_TRY(nvmlDeviceGetClockInfo(device, NVML_CLOCK_MEM, &memory_clock));
+        return memory_clock;
+    }
+
+    int getDecoderClock()
+    {
+        unsigned int decoder_clock;
+        NVML_TRY(nvmlDeviceGetClockInfo(device, NVML_CLOCK_VIDEO, &decoder_clock));
+        return decoder_clock;
+    }
+
+    int getFanSpeed()
+    {
+        unsigned int fan_speed;
+        NVML_TRY(nvmlDeviceGetFanSpeed(device, &fan_speed));
+        return fan_speed;
+    }
+
+    int getTemperature()
+    {
+        unsigned int temperature;
+        NVML_TRY(nvmlDeviceGetTemperature(device, NVML_TEMPERATURE_GPU, &temperature));
+        return temperature;
+    }
+
+    int getMemoryTotal()
+    {
+        nvmlMemory_t memory;
+        NVML_TRY(nvmlDeviceGetMemoryInfo(device, &memory));
+        return memory.total / 1024 / 1024;
+    }
+
+    int getMemoryUsed()
+    {
+        nvmlMemory_t memory;
+        NVML_TRY(nvmlDeviceGetMemoryInfo(device, &memory));
+        return memory.used / 1024 / 1024;
+    }
+
+    int getMemoryFree()
+    {
+        nvmlMemory_t memory;
+        NVML_TRY(nvmlDeviceGetMemoryInfo(device, &memory));
+        return memory.free / 1024 / 1024;
+    }
+
+private:
+    std::map<std::string, unsigned int> _perfMap;
+
+};
+
+int
+main()
 {
     NVML_TRY(nvmlInit());
 
