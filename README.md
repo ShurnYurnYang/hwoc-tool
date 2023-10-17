@@ -19,11 +19,17 @@ HWOC tool is a set of scripts that monitors hardware level performance of compon
   - Current Clock Speed
 - GPU:
   - GPU Name
+  - Clock Speed
+  - Memory Clock Speed
+  - Video Decoder Clock Speed
+  - Temperature
+  - Total Memory
+  - Used Memory
+  - Free Memory
 ## Notes and Limitations:
 - CPU Clock Speed related information is currently collected through command line (typeperf)
   - This is very slow and inefficient
 ## To Do:
 - Add Linux support
-- Switch from command line to AMD and Intel SDKs for CPU Clock Speed
-- Add AMD and Intel GPU support using their respective SDKs
-- Implement more GPU monitoring features
+- Switch from using command line to AMD Ryzen Master Monitoring and Intel Performance Counter Monitor SDKs for CPU Clock Speed
+- Add AMD and Intel GPU support using GPUPerfAPI and Metric Discovery, respectively.
