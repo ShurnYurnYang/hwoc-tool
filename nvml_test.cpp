@@ -1,14 +1,14 @@
 #include <iostream>
 #include <nvml.h>
+#include <nvmlGetPerf.h>
 #include <windows.h>
-#include <map>
 
 int
 main()
 {
     unsigned int deviceIndex{0};
 
-    nvmlClass nvmlObj(deviceIndex);
+    nvmlGetPerf nvmlObj(deviceIndex);
 
     while(true){
         std::cout << "The GPU name is: " << nvmlObj.getName() << std::endl;
