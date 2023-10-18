@@ -2,6 +2,7 @@
 #include <nvml.h>
 #include <nvmlGetPerf.h>
 #include <windows.h>
+#include <stdlib.h>
 
 int
 main()
@@ -23,6 +24,7 @@ main()
         std::cout << "The GPU memory free is: " << nvmlObj.getMemoryFree() << " MB" << std::endl;
         std::cout << std::endl;
         Sleep(1000);
+        system("cls");
     }
 
     return 0;
