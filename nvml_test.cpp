@@ -22,7 +22,7 @@ main()
 
         std::stringstream collectedString;
 
-        collectedString << nvmlObj.getName() << " | ";
+        collectedString << "| " << nvmlObj.getName() << " | ";
 
         for(const auto& pair : perfMap){
             std::string key = pair.first;
