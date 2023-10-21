@@ -26,6 +26,6 @@ class logWriter
     private:
         const std::string filename_;
         std::ofstream logFile_;
-}
-    
-    
+};
+
+#endif // LOG_WRITER_H
