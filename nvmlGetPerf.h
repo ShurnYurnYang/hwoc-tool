@@ -47,14 +47,14 @@ public:
 
     std::map<std::string, unsigned int> updatePerfStats()
     {
-        _perfMap["graphics_clock"] = getGraphicsClock();
-        _perfMap["memory_clock"] = getMemoryClock();
-        _perfMap["decoder_clock"] = getDecoderClock();
+        _perfMap["Graphics Clock (MHz)"] = getGraphicsClock();
+        _perfMap["Memory Clock (MHz)"] = getMemoryClock();
+        _perfMap["Decoder Clock (MHz)"] = getDecoderClock();
         //_perfMap["fan_speed"] = getFanSpeed();
-        _perfMap["temperature"] = getTemperature();
-        _perfMap["memory_total"] = getMemoryTotal();
-        _perfMap["memory_used"] = getMemoryUsed();
-        _perfMap["memory_free"] = getMemoryFree();
+        _perfMap["Temperature (C)"] = getTemperature();
+        _perfMap["Total Memory (MB)"] = getMemoryTotal();
+        _perfMap["Used Memory (MB)"] = getMemoryUsed();
+        _perfMap["Free Memory (MB)"] = getMemoryFree();
 
         return _perfMap;
     }
