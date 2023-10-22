@@ -13,7 +13,7 @@ main()
 
     nvmlGetPerf nvmlObj(deviceIndex);
 
-    std::map<std::string, unsigned int> perfMap;
+    std::array<std::tuple<std::string, unsigned int>, 8> perfMap;
 
     logWriter logWriterObj("nvml_test.log");
 
@@ -25,8 +25,8 @@ main()
         collectedString << "| " << nvmlObj.getName() << " | ";
 
         for(const auto& pair : perfMap){
-            std::string key = pair.first;
-            unsigned int value = pair.second;
+            std::string key = std::get<0>(pair);
+            unsigned int value = std::get<1>(pair);
             collectedString << key << ": " << value << " | ";
         }
 

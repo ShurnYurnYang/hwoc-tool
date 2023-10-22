@@ -3,7 +3,8 @@
 
 #include <iostream>
 #include <nvml.h>
-#include <map>
+#include <array>
+#include <tuple>
 
 // define a macro that returns the errorstring if the nvml call fails
 #define NVML_TRY(call)                                                                 \
@@ -45,16 +46,16 @@ public:
         return name;
     }
 
-    std::map<std::string, unsigned int> updatePerfStats()
+    std::array<std::tuple<std::string, unsigned int>, 8> updatePerfStats()
     {
-        _perfMap["Graphics Clock (MHz)"] = getGraphicsClock();
-        _perfMap["Memory Clock (MHz)"] = getMemoryClock();
-        _perfMap["Decoder Clock (MHz)"] = getDecoderClock();
-        //_perfMap["fan_speed"] = getFanSpeed();
-        _perfMap["Temperature (C)"] = getTemperature();
-        _perfMap["Total Memory (MB)"] = getMemoryTotal();
-        _perfMap["Used Memory (MB)"] = getMemoryUsed();
-        _perfMap["Free Memory (MB)"] = getMemoryFree();
+        _perfMap[0] = std::make_tuple("Graphics Clock (MHz)", getGraphicsClock());
+        _perfMap[1] = std::make_tuple("Memory Clock (MHz)", getMemoryClock());
+        _perfMap[2] = std::make_tuple("Decoder Clock (MHz)", getDecoderClock());
+        //_perfMap[3] = std::make_tuple("fan_speed", getFanSpeed());
+        _perfMap[4] = std::make_tuple("Temperature (C)", getTemperature());
+        _perfMap[5] = std::make_tuple("Total Memory (MB)", getMemoryTotal());
+        _perfMap[6] = std::make_tuple("Used Memory (MB)", getMemoryUsed());
+        _perfMap[7] = std::make_tuple("Free Memory (MB)", getMemoryFree());
 
         return _perfMap;
     }
@@ -117,7 +118,7 @@ public:
     }
 
 private:
-    std::map<std::string, unsigned int> _perfMap;
+    std::array<std::tuple<std::string, unsigned int>, 8> _perfMap;
 };
 
 #endif // NVML_GET_PERF_H
