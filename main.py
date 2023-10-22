@@ -9,7 +9,7 @@ def first_run():
         "CPU NAME": "",
         "PHYSICAL CORES": 0,
         "LOGICAL CORES": 0,
-        "MAX SPEED": 0,
+        "NOMINAL SPEED": 0,
         "CURRENT SPEED": 0,
     }
 
