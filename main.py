@@ -40,7 +40,7 @@ def first_run():
     CPU_info["CPU NAME"] = name_cpu
     CPU_info["PHYSICAL CORES"] = num_cores
     CPU_info["LOGICAL CORES"] = num_threads
-    CPU_info["MAX SPEED"] = max_clock_speed
+    CPU_info["NOMINAL SPEED"] = max_clock_speed
 
     return CPU_info
 
@@ -58,7 +58,7 @@ def get_CPU_freq():
     return float(result)
 
 def update_CPU_info(cpu_info):
-    cpu_info["CURRENT SPEED"] = cpu_info["MAX SPEED"] * (get_CPU_freq() / 100)
+    cpu_info["CURRENT SPEED"] = cpu_info["NOMINAL SPEED"] * (get_CPU_freq() / 100)
     return cpu_info
 
 if __name__ == "__main__":
