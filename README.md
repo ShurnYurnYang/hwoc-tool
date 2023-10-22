@@ -28,7 +28,7 @@ HWOC tool is a set of scripts that monitors hardware level performance of compon
   - Free Memory
 ## Examples
 ### GPU Performance Data Written To Log
-![box](examples/"nvml_test_log example.png")
+![box](examples/nvml_test_log_example.png)
 ## Notes and Limitations:
 - CPU Clock Speed related information is currently collected through command line (typeperf)
   - This is very slow and inefficient
