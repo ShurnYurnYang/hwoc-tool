@@ -13,7 +13,7 @@ main()
 
     nvmlGetPerf nvmlObj(deviceIndex);
 
-    std::array<std::tuple<std::string, unsigned int>, 8> perfMap;
+    auto perfMap = nvmlObj.updatePerfStats();
 
     logWriter logWriterObj("nvml_test.log");
 
