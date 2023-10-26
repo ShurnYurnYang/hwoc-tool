@@ -27,7 +27,7 @@ class logWriter
             logFile_ << timestamp << " " << entryMessage << std::endl;
         }
 
-        void writeToLog(std::array<std::tuple<std::string, unsigned int>, 8> perfMap, nvmlGetPerf& nvmlObj){ //formats and writes the entire log file given the perfMap
+        void writeToLog(auto perfMap, nvmlGetPerf& nvmlObj){ //formats and writes the entire log file given the perfMap
             std::stringstream collectedString;
 
             collectedString << "| " << nvmlObj.getName() << " | ";
