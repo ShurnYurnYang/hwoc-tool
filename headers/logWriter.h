@@ -23,6 +23,22 @@ class logWriter
             std::strftime(timestamp, sizeof(timestamp), "%Y-%m-%d %H:%M:%S", std::localtime(&now));
             logFile_ << timestamp << " " << entryMessage << std::endl;
         }
+
+        void writeToLog(auto perfMap, auto nvmlObj, auto logWriterObj){
+            std::stringstream collectedString;
+
+            collectedString << "| " << nvmlObj.getName() << " | ";
+
+            for(const auto& pair : perfMap){
+                std::string key = std::get<0>(pair);
+                unsigned int value = std::get<1>(pair);
+                collectedString << key << ": " << value << " | ";
+            }
+
+            std::string logEntry = collectedString.str();
+
+            logWriterObj.writeEntry(logEntry);
+        }
     private:
         const std::string filename_;
         std::ofstream logFile_;
