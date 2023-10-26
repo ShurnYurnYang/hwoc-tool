@@ -20,14 +20,14 @@ class logWriter
             logFile_.close();
         }
 
-        void writeEntry(const std::string entryMessage){
+        void writeEntry(const std::string entryMessage){ //writes a single line entry to the log file
             std::time_t now = std::time(0);
             char timestamp[100];
             std::strftime(timestamp, sizeof(timestamp), "%Y-%m-%d %H:%M:%S", std::localtime(&now));
             logFile_ << timestamp << " " << entryMessage << std::endl;
         }
 
-        void writeToLog(std::array<std::tuple<std::string, unsigned int>, 8> perfMap, nvmlGetPerf& nvmlObj){
+        void writeToLog(std::array<std::tuple<std::string, unsigned int>, 8> perfMap, nvmlGetPerf& nvmlObj){ //formats and writes the entire log file given the perfMap
             std::stringstream collectedString;
 
             collectedString << "| " << nvmlObj.getName() << " | ";
