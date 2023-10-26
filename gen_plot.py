@@ -1,6 +1,12 @@
 import matplotlib.pyplot as plt
 import copy
 
+class gen_plot:
+    def __init__(self, data):
+        self.data = data    # data is a list of dictionaries
+        
+
+
 def read_data(file_name):
     return_list = []   
     entry = {
@@ -34,3 +40,15 @@ def read_data(file_name):
     return return_list
 
 read_data("nvml_test.log")
+
+def org_data(data):
+    series = []
+    x_values = []
+    y_values = []
+    for entry in data:
+        for key, value in entry.items():
+            if key not in series:
+                series.append(key)
+            
+
+
