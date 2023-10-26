@@ -20,6 +20,8 @@ main()
     while(true){
         perfMap = nvmlObj.updatePerfStats();
 
+        //logWriterObj.writeToLog(perfMap, nvmlObj);
+
         std::stringstream collectedString;
 
         collectedString << "| " << nvmlObj.getName() << " | ";

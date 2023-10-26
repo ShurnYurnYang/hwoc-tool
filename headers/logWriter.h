@@ -4,6 +4,9 @@
 #include <iostream>
 #include <fstream>
 #include <ctime>
+#include <sstream>
+#include <array>
+#include <tuple>
 
 
 class logWriter
@@ -24,7 +27,7 @@ class logWriter
             logFile_ << timestamp << " " << entryMessage << std::endl;
         }
 
-        void writeToLog(auto perfMap, auto nvmlObj, auto logWriterObj){
+        /*void writeToLog(std::array<std::tuple<std::string, unsigned int>, 8> perfMap, nvmlGetPerf nvmlObj){
             std::stringstream collectedString;
 
             collectedString << "| " << nvmlObj.getName() << " | ";
@@ -37,8 +40,9 @@ class logWriter
 
             std::string logEntry = collectedString.str();
 
-            logWriterObj.writeEntry(logEntry);
+            writeEntry(logEntry);
         }
+        */
     private:
         const std::string filename_;
         std::ofstream logFile_;
