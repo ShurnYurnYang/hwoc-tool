@@ -605,3 +605,6 @@ FodyWeavers.xsd
 
 # Manually added ignore .vscode/ folder
 .vscode/
+
+# Manually added ignore .csv
+*.csv
