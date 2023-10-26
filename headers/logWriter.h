@@ -27,7 +27,7 @@ class logWriter
             logFile_ << timestamp << " " << entryMessage << std::endl;
         }
 
-        /*void writeToLog(std::array<std::tuple<std::string, unsigned int>, 8> perfMap, nvmlGetPerf nvmlObj){
+        void writeToLog(std::array<std::tuple<std::string, unsigned int>, 8> perfMap, nvmlGetPerf& nvmlObj){
             std::stringstream collectedString;
 
             collectedString << "| " << nvmlObj.getName() << " | ";
@@ -42,7 +42,7 @@ class logWriter
 
             writeEntry(logEntry);
         }
-        */
+        
     private:
         const std::string filename_;
         std::ofstream logFile_;
