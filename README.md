@@ -29,6 +29,8 @@ HWOC tool is a set of scripts that monitors hardware level performance of compon
 ## Examples
 ### GPU Performance Data Written To Log
 ![box](examples/nvml_test_log_example.png)
+### GPU Performance Data Written To CSV
+![box](examples/nvml_test_csv_example.png)
 ### CPU Performance Data Written To Console
 ![box](examples/hwoc_tool_cpu_example.png)
 ## Notes and Limitations:
