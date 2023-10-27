@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <logWriter.h>
 #include <sstream>
+#include <csvWriter.h>
 
 int
 main()
@@ -17,10 +18,14 @@ main()
 
     logWriter logWriterObj("nvml_test.log");
 
+    csvWriter csvWriterObj("nvml_test.csv");
+
     while(true){
         perfMap = nvmlObj.updatePerfStats();
 
         logWriterObj.writeToLog(perfMap, nvmlObj);
+
+        csvWriterObj.writeCSVToLog(perfMap, nvmlObj);
 
         Sleep(1000);
     }
