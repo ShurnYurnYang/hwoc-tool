@@ -32,6 +32,7 @@ public:
         }
 
         std::string csvEntry = collectedString.str();
+        csvEntry.pop_back(); // remove trailing comma
 
         writeEntry(csvEntry);
     }
