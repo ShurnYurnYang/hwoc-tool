@@ -9,9 +9,22 @@ class csvWriter
 {
 
 public:
-    csvWriter(const std::string filename) : filename_(filename)
+    csvWriter(const std::string filename, auto perfMap) : filename_(filename)
     {
         csvFile_.open(filename_, std::ios::out | std::ios::app);
+
+        std::stringstream collectedHeaders;
+        collectedHeaders << "Local Time,"
+                         << "Device Name,";
+
+        for (const auto &pair : perfMap)
+        {
+            std::string key = std::get<0>(pair);
+            collectedHeaders << key << ",";
+        }
+        std::string csvHeader = collectedHeaders.str();
+        csvHeader.pop_back(); // remove trailing comma
+        csvFile_ << csvHeader << std::endl;
     }
 
     ~csvWriter()

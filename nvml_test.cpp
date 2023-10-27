@@ -18,7 +18,7 @@ main()
 
     logWriter logWriterObj("nvml_test.log");
 
-    csvWriter csvWriterObj("nvml_test.csv");
+    csvWriter csvWriterObj("nvml_test.csv", perfMap);
 
     while(true){
         perfMap = nvmlObj.updatePerfStats();
