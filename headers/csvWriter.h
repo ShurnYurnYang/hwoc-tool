@@ -11,10 +11,18 @@ class csvWriter
 public:
     csvWriter(const std::string filename, auto perfMap) : filename_(filename)
     {
-        csvFile_.open(filename_, std::ios::out | std::ios::app);
 
-        if (!(std::ifstream(filename_).good()))
+        std::ifstream fileExistsCheck(filename_);
+
+        if (fileExistsCheck)
         {
+            // The file exists, so you can open it for appending
+            csvFile_.open(filename_, std::ios::out | std::ios::app);
+        }
+        else
+        {
+            // The file doesn't exist, so you can create and open it
+            csvFile_.open(filename_, std::ios::out);
             std::stringstream collectedHeaders;
             collectedHeaders << "Local Time,"
                              << "Device Name,";
