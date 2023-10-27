@@ -13,18 +13,21 @@ public:
     {
         csvFile_.open(filename_, std::ios::out | std::ios::app);
 
-        std::stringstream collectedHeaders;
-        collectedHeaders << "Local Time,"
-                         << "Device Name,";
-
-        for (const auto &pair : perfMap)
+        if (!(std::ifstream(filename_).good()))
         {
-            std::string key = std::get<0>(pair);
-            collectedHeaders << key << ",";
+            std::stringstream collectedHeaders;
+            collectedHeaders << "Local Time,"
+                             << "Device Name,";
+
+            for (const auto &pair : perfMap)
+            {
+                std::string key = std::get<0>(pair);
+                collectedHeaders << key << ",";
+            }
+            std::string csvHeader = collectedHeaders.str();
+            csvHeader.pop_back(); // remove trailing comma
+            csvFile_ << csvHeader << std::endl;
         }
-        std::string csvHeader = collectedHeaders.str();
-        csvHeader.pop_back(); // remove trailing comma
-        csvFile_ << csvHeader << std::endl;
     }
 
     ~csvWriter()
