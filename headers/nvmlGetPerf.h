@@ -46,16 +46,16 @@ public:
         return name;
     }
 
-    std::array<std::tuple<std::string, unsigned int>, 8> updatePerfStats()
+    auto updatePerfStats()
     {
         _perfMap[0] = std::make_tuple("Graphics Clock (MHz)", getGraphicsClock());
         _perfMap[1] = std::make_tuple("Memory Clock (MHz)", getMemoryClock());
         _perfMap[2] = std::make_tuple("Decoder Clock (MHz)", getDecoderClock());
         //_perfMap[3] = std::make_tuple("fan_speed", getFanSpeed());
-        _perfMap[4] = std::make_tuple("Temperature (C)", getTemperature());
-        _perfMap[5] = std::make_tuple("Total Memory (MB)", getMemoryTotal());
-        _perfMap[6] = std::make_tuple("Used Memory (MB)", getMemoryUsed());
-        _perfMap[7] = std::make_tuple("Free Memory (MB)", getMemoryFree());
+        _perfMap[3] = std::make_tuple("Temperature (C)", getTemperature());
+        _perfMap[4] = std::make_tuple("Total Memory (MB)", getMemoryTotal());
+        _perfMap[5] = std::make_tuple("Used Memory (MB)", getMemoryUsed());
+        _perfMap[6] = std::make_tuple("Free Memory (MB)", getMemoryFree());
 
         return _perfMap;
     }
@@ -118,7 +118,7 @@ public:
     }
 
 private:
-    std::array<std::tuple<std::string, unsigned int>, 8> _perfMap;
+    std::array<std::tuple<std::string, unsigned int>, 7> _perfMap;
 };
 
 #endif // NVML_GET_PERF_H
