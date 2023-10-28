@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
 import pandas as pd
 import os
 
@@ -13,5 +14,25 @@ class GPUData:
     
     # takes the dataframe and generate a line plot with the given x and y axis and show the plot
     def plot(self, x, y):
+
+        self.dataframe[x] = pd.to_datetime(self.dataframe[x])
+
         self.dataframe.plot(x=x, y=y)
+
+        plt.gca().xaxis.set_major_locator(mdates.AutoDateLocator(minticks=30, maxticks=60))  # Adjusts tick density automatically
+        plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d %H:%M:%S'))  # Specify date/time format
+        plt.gca().set_xlim(self.dataframe[x].min(), self.dataframe[x].max())  # Set the x-axis limits
+
+        plt.gca().yaxis.set_major_locator(plt.MaxNLocator(20))  # Adjusts tick density automatically
+
+        plt.gca().set_ylim(top=2000)  # Set y-axis range
+
+        plt.xlabel("Local Time")
+
+        plt.ylabel("Graphics Clock (MHz)")
+
+        plt.title("Graphics Clock (MHz) vs Local Time")
+
+        plt.xticks(rotation=45)
+
         plt.show()
