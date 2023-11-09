@@ -1,4 +1,5 @@
 import gpu_data
 
 gpu_data = gpu_data.GPUData("nvml_test.csv")
-gpu_data.plot("Local Time", "Graphics Clock (MHz)")
+for header in gpu_data.dataframe.columns[2:]:
+    gpu_data.plot("Local Time", str(header))

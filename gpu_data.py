@@ -25,13 +25,13 @@ class GPUData:
 
         plt.gca().yaxis.set_major_locator(plt.MaxNLocator(20))  # Adjusts tick density automatically
 
-        plt.gca().set_ylim(top=2000)  # Set y-axis range
+        #plt.gca().set_ylim(top=2000)  # Set y-axis range
 
         plt.xlabel("Local Time")
 
-        plt.ylabel("Graphics Clock (MHz)")
+        plt.ylabel(y)
 
-        plt.title("Graphics Clock (MHz) vs Local Time")
+        plt.title(f"{y} vs Local Time")
 
         plt.xticks(rotation=45)
 
